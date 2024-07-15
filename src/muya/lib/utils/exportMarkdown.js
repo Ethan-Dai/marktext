@@ -194,7 +194,8 @@ class ExportMarkdown {
 
   normalizeBlockquote (block, indent) {
     const { children } = block
-    const newIndent = `${indent}> `
+    // const newIndent = `${indent}> `
+    const newIndent = '\t'
     return this.translateBlocks2Markdown(children, newIndent)
   }
 
@@ -273,7 +274,7 @@ class ExportMarkdown {
       result.push(indent + '```\n')
     } else {
       textList.forEach(text => {
-        result.push(`${indent}    ${text}\n`)
+        result.push(`${indent}\t${text}\n`)
       })
     }
 

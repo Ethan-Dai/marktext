@@ -14,6 +14,11 @@ const getIndentSpace = text => {
   return match ? match[1] : ''
 }
 
+const getIndent = text => {
+  const match = /^([\t\s]*)\S/.exec(text)
+  return match ? match[1] : ''
+}
+
 const enterCtrl = ContentState => {
   // TODO@jocs this function need opti.
   ContentState.prototype.chopBlockByCursor = function (block, key, offset) {
@@ -271,10 +276,10 @@ const enterCtrl = ContentState => {
     ) {
       const { text, key } = block
       const autoIndent = checkAutoIndent(text, start.offset)
-      const indent = getIndentSpace(text)
+      const indent = getIndent(text)
       block.text = text.substring(0, start.offset) +
         '\n' +
-        (autoIndent ? indent + ' '.repeat(this.tabSize) + '\n' : '') +
+        (autoIndent ? indent + '\t' + '\n' : '') +
         indent +
         text.substring(start.offset)
 

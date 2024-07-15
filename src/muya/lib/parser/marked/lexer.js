@@ -28,7 +28,6 @@ function Lexer (opts) {
 Lexer.prototype.lex = function (src) {
   src = src
     .replace(/\r\n|\r/g, '\n')
-    .replace(/\t/g, '    ')
   this.checkFrontmatter = true
   this.footnoteOrder = 0
   this.token(src, true)

@@ -220,10 +220,10 @@ class Muya {
   setTabSize (tabSize) {
     if (!tabSize || typeof tabSize !== 'number') {
       tabSize = 4
-    } else if (tabSize < 1) {
-      tabSize = 1
-    } else if (tabSize > 4) {
-      tabSize = 4
+    } else if (tabSize < 2) {
+      tabSize = 2
+    } else if (tabSize > 8) {
+      tabSize = 8
     }
     this.contentState.tabSize = tabSize
   }

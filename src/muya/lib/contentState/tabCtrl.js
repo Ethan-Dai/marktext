@@ -188,8 +188,7 @@ const tabCtrl = ContentState => {
   }
 
   ContentState.prototype.insertTab = function () {
-    const tabSize = this.tabSize
-    const tabCharacter = String.fromCharCode(160).repeat(tabSize)
+    const tabCharacter = String.fromCharCode(9)
     const { start, end } = this.cursor
     const startBlock = this.getBlock(start.key)
     const endBlock = this.getBlock(end.key)

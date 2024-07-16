@@ -33,6 +33,16 @@ class ExportMarkdown {
     return this.translateBlocks2Markdown(this.blocks)
   }
 
+  getByteLen (str) {
+    let len = 0
+    for (let i = 0; i < str.length; i++) {
+      let c = str.charCodeAt(i)
+      if (c < 0x2f00) len += 1
+      else len += 2
+    }
+    return len
+  }
+
   translateBlocks2Markdown (blocks, indent = '', listIndent = '') {
     const result = []
     // helper for CommonMark 264
@@ -194,8 +204,7 @@ class ExportMarkdown {
 
   normalizeBlockquote (block, indent) {
     const { children } = block
-    // const newIndent = `${indent}> `
-    const newIndent = '\t'
+    const newIndent = `${indent}> `
     return this.translateBlocks2Markdown(children, newIndent)
   }
 
@@ -315,13 +324,13 @@ class ExportMarkdown {
 
     for (i = 0; i <= row; i++) {
       for (j = 0; j <= column; j++) {
-        columnWidth[j].width = Math.max(columnWidth[j].width, tableData[i][j].length + 2) // add 2, because have two space around text
+        columnWidth[j].width = Math.max(columnWidth[j].width, this.getByteLen(tableData[i][j]) + 2) // add 2, because have two space around text
       }
     }
     tableData.forEach((r, i) => {
       const rs = indent + '|' + r.map((cell, j) => {
         const raw = ` ${cell + ' '.repeat(columnWidth[j].width)}`
-        return raw.substring(0, columnWidth[j].width)
+        return raw.substring(0, columnWidth[j].width + raw.length - this.getByteLen(raw))
       }).join('|') + '|'
       result.push(rs)
       if (i === 0) {

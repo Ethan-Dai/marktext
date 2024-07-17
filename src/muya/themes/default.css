@@ -109,6 +109,7 @@ code[class*="language-"],
 pre.ag-paragraph {
   font-family: "DejaVu Sans Mono", "Source Code Pro", "Droid Sans Mono", Consolas, monospace;
   font-size: 14px;
+  tab-size: 8;
 }
 
 kbd {

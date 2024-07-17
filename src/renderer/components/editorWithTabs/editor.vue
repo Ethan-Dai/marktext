@@ -77,8 +77,6 @@ import { shell } from 'electron'
 import path from 'path'
 import log from 'electron-log'
 import { mapState } from 'vuex'
-// import ViewImage from 'view-image'
-import { isChildOfDirectory } from 'common/filesystem/paths'
 import Muya from 'muya/lib'
 import TablePicker from 'muya/lib/ui/tablePicker'
 import QuickInsert from 'muya/lib/ui/quickInsert'
@@ -695,22 +693,9 @@ export default {
         pathname
       } = this.currentFile
 
-      // Save an image relative to the file if the relative image directory include the filename variable.
-      // The image is save relative to the root folder without a variable.
-      const saveRelativeToFile = () => {
-        return /\${filename}/.test(imageRelativeDirectoryName)
-      }
-
       // Figure out the current working directory.
       const isTabSavedOnDisk = !!pathname
       let relativeBasePath = isTabSavedOnDisk ? path.dirname(pathname) : null
-      if (isTabSavedOnDisk && !saveRelativeToFile() && this.projectTree) {
-        const { pathname: rootPath } = this.projectTree
-        if (rootPath && isChildOfDirectory(rootPath, pathname)) {
-          // Save assets relative to root directory.
-          relativeBasePath = rootPath
-        }
-      }
 
       const getResolvedImagePath = imagePath => {
         const replacement = isTabSavedOnDisk

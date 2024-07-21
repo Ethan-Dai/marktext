@@ -173,8 +173,9 @@ class Muya {
       newMarkdown = cursorInfo.markdown
       isValid = cursorInfo.isValid
     }
+    let pos = !isValid && cursor && cursor.pos ? cursor.pos : null
     this.contentState.importMarkdown(newMarkdown)
-    this.contentState.importCursor(cursor && isValid)
+    this.contentState.importCursor(cursor && isValid, pos)
     this.contentState.render(isRenderCursor)
     setTimeout(() => {
       this.dispatchChange()
@@ -296,6 +297,10 @@ class Muya {
     this.contentState.search(value, opt)
     this.contentState.render(!!selectHighlight)
     return this.contentState.searchMatches
+  }
+
+  searchHeader (name) {
+    return this.contentState.searchHeader(name)
   }
 
   replace (value, opt) {

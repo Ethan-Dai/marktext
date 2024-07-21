@@ -461,14 +461,14 @@ class App {
       this._openSettingsWindow(category)
     })
 
-    ipcMain.on('app-open-file-by-id', (windowId, filePath) => {
+    ipcMain.on('app-open-file-by-id', (windowId, filePath, pos) => {
       const openFilesInNewWindow = this._accessor.preferences.getItem('openFilesInNewWindow')
       if (openFilesInNewWindow) {
         this._createEditorWindow(null, [filePath])
       } else {
         const editor = this._windowManager.get(windowId)
         if (editor) {
-          editor.openTab(filePath, {}, true)
+          editor.openTab(filePath, { pos: pos }, true)
         }
       }
     })

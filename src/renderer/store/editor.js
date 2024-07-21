@@ -336,7 +336,11 @@ const mutations = {
 
 const actions = {
   FORMAT_LINK_CLICK ({ commit }, { data, dirname }) {
-    ipcRenderer.send('mt::format-link-click', { data, dirname })
+    if (data && data.href && data.href.startsWith('#')) {
+      bus.$emit('scroll-to-header', data.href)
+    } else {
+      ipcRenderer.send('mt::format-link-click', { data, dirname })
+    }
   },
 
   LISTEN_SCREEN_SHOT ({ commit }) {

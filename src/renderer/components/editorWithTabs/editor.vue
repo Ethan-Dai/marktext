@@ -890,7 +890,13 @@ export default {
     },
 
     scrollToHeader (slug) {
-      return this.scrollToElement(`#${slug}`)
+      if (slug && typeof slug === 'string' && slug.startsWith('#')) {
+        slug = this.editor.searchHeader(slug)
+      }
+
+      if (slug) {
+        return this.scrollToElement(`#${slug}`)
+      }
     },
 
     scrollToElement (selector) {

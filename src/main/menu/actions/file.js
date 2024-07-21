@@ -440,10 +440,16 @@ ipcMain.on('mt::format-link-click', (e, { data, dirname }) => {
   }
 
   if (pathname) {
-    pathname = path.normalize(pathname)
-    if (isMarkdownFile(pathname)) {
+    let md = pathname
+    let pos = null
+    const mdIndex = pathname.indexOf('.md')
+    if (mdIndex !== -1) {
+      md = path.normalize(pathname.slice(0, mdIndex + 3))
+      pos = pathname.slice(mdIndex + 3)
+    }
+    if (isMarkdownFile(md)) {
       const win = BrowserWindow.fromWebContents(e.sender)
-      openFileOrFolder(win, pathname)
+      openFileOrFolder(win, md, pos)
     } else {
       shell.openPath(pathname)
     }
@@ -534,10 +540,10 @@ export const openFolder = async win => {
   }
 }
 
-export const openFileOrFolder = (win, pathname) => {
+export const openFileOrFolder = (win, pathname, pos = null) => {
   const resolvedPath = normalizeAndResolvePath(pathname)
   if (isFile(resolvedPath)) {
-    ipcMain.emit('app-open-file-by-id', win.id, resolvedPath)
+    ipcMain.emit('app-open-file-by-id', win.id, resolvedPath, pos)
   } else if (isDirectory(resolvedPath)) {
     ipcMain.emit('app-open-directory-by-id', win.id, resolvedPath)
   } else {

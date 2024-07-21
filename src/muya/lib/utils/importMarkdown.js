@@ -540,7 +540,7 @@ const importRegister = ContentState => {
     }
   }
 
-  ContentState.prototype.importCursor = function (hasCursor) {
+  ContentState.prototype.importCursor = function (hasCursor, pos = null) {
     // set cursor
     const cursor = {
       anchor: null,
@@ -581,9 +581,15 @@ const importRegister = ContentState => {
     if (hasCursor) {
       travel(this.blocks)
     } else {
-      const lastBlock = this.getLastBlock()
-      const key = lastBlock.key
-      const offset = lastBlock.text.length
+      let key = null
+      const offset = 0
+      if (pos) {
+        key = this.searchHeader(pos)
+      }
+      if (!key) {
+        const fitstBlock = this.getFirstBlock()
+        key = fitstBlock.key
+      }
       cursor.anchor = { key, offset }
       cursor.focus = { key, offset }
     }

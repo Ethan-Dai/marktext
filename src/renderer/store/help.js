@@ -134,9 +134,10 @@ export const createDocumentState = (markdownDocument, id = getUniqueId()) => {
     encoding,
     lineEnding,
     adjustLineEndingOnSave,
-    trimTrailingNewline,
-    cursor = null
+    trimTrailingNewline
   } = markdownDocument
+
+  let cursor = markdownDocument.pos ? { pos: markdownDocument.pos } : null
 
   assertLineEnding(adjustLineEndingOnSave, lineEnding)
 

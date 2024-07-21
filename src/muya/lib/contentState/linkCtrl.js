@@ -41,6 +41,22 @@ const linkCtrl = ContentState => {
     this.singleRender(block)
     return this.muya.dispatchChange()
   }
+
+  ContentState.prototype.searchHeader = function (name) {
+    const header = name.replace(/^#+\s*/, '')
+    const { blocks } = this
+    for (const block of blocks) {
+      let { key, type } = block
+      if (/^h\d$/.test(type) && block.children.length) {
+        let curr = block.children[0].text.replace(/^#+\s*/, '')
+        curr = curr.replace(/ /g, '-')
+        if (curr === header) {
+          return key
+        }
+      }
+    }
+    return null
+  }
 }
 
 export default linkCtrl

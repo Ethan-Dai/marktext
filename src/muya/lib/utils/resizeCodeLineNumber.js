@@ -21,12 +21,11 @@ const getStyles = function (element) {
 }
 
 /**
+* FIXME: Heavy performance issues with this function, please see #1648.
 * Resizes line numbers spans according to height of line of code
 * @param {Element} element <pre> element
 */
 const resizeCodeBlockLineNumber = function (element) {
-  // FIXME: Heavy performance issues with this function, please see #1648.
-
   const codeStyles = getStyles(element)
   const whiteSpace = codeStyles['white-space']
 

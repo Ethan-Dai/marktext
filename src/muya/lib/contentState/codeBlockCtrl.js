@@ -1,6 +1,6 @@
 import { loadLanguage } from '../prism/index'
 import { escapeHTML } from '../utils'
-// import resizeCodeBlockLineNumber from '../utils/resizeCodeLineNumber'
+import resizeCodeBlockLineNumber from '../utils/resizeCodeLineNumber'
 import selection from '../selection'
 
 const CODE_UPDATE_REP = /^`{3,}(.*)/
@@ -156,18 +156,17 @@ const codeBlockCtrl = ContentState => {
   }
 
   ContentState.prototype.resizeLineNumber = function () {
-    // FIXME: Disabled due to #1648.
-    // const { codeBlockLineNumbers } = this.muya.options
-    // if (!codeBlockLineNumbers) {
-    //   return
-    // }
+    const { codeBlockLineNumbers } = this.muya.options
+    if (!codeBlockLineNumbers) {
+      return
+    }
 
-    // const codeBlocks = document.querySelectorAll('pre.line-numbers')
-    // if (codeBlocks.length) {
-    //   for (const ele of codeBlocks) {
-    //     resizeCodeBlockLineNumber(ele)
-    //   }
-    // }
+    const codeBlocks = document.querySelectorAll('pre.line-numbers')
+    if (codeBlocks.length) {
+      for (const ele of codeBlocks) {
+        resizeCodeBlockLineNumber(ele)
+      }
+    }
   }
 }
 

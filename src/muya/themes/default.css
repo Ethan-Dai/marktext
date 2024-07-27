@@ -94,6 +94,13 @@
   src: url('./fonts/DejaVuSansMono-Oblique.ttf');
 }
 
+/* fontawesome icons https://fontawesome.com/ */
+@font-face {
+  font-family: "fontawesome";
+  src: url('./fonts/fa-regular-400.ttf');
+}
+
+
 html, body {
   font-family: "Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;

@@ -18,6 +18,7 @@ export const inlineRules = {
   image: /^(\!\[)(.*?)(\\*)\]\((.*)(\\*)\)/,
   link: /^(\[)((?:\[[^\]]*\]|[^\[\]]|\](?=[^\[]*\]))*?)(\\*)\]\((.*)(\\*)\)/, // can nest
   emoji: /^(:)([a-z_\d+-]+?)\1/,
+  alert: /^(\[!)(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/,
   del: /^(~{2})(?=\S)([\s\S]*?\S)(\\*)\1/, // can nest
   auto_link: /^<(?:([a-zA-Z]{1}[a-zA-Z\d\+\.\-]{1,31}:[^ <>]*)|([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*))>/,
   // (extended www autolink|extended url autolink|extended email autolink) the email regexp is the same as auto_link.

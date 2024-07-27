@@ -790,15 +790,15 @@ span.ag-emoji-marked-text {
   text-decoration: none;
 }
 
-.ag-emoji-marked-text[data-emoji] {
-  margin-left: 1.2em;
-}
-
 .ag-hide.ag-emoji-marked-text[data-emoji],
 .ag-hide.ag-html-escape[data-character] {
   overflow: visible;
   white-space: nowrap;
   color: transparent;
+}
+
+.ag-emoji-marked-text[data-emoji] {
+  margin-left: 1.2em;
 }
 
 .ag-emoji-marked-text::before {
@@ -810,7 +810,37 @@ span.ag-emoji-marked-text {
   font-size: 1em;
 }
 
-.ag-hide.ag-emoji-marked-text::before {
+span.ag-alert-marked-text {
+  position: relative;
+  color: var(--themeColor);
+  text-decoration: none;
+}
+
+
+.ag-hide.ag-alert-marked-text[data-alert],
+.ag-hide.ag-html-escape[data-character] {
+  overflow: visible;
+  white-space: nowrap;
+  color: transparent;
+}
+
+.ag-alert-marked-text[data-alert] {
+  position: relative;
+  margin-left: 10em;
+}
+
+.ag-alert-marked-text::before {
+  position: absolute;
+  text-align: center;
+  content: attr(data-alert);
+  color: var(--icon-color, #ffffff);
+  left: -10em;
+  font-family: fontawesome;
+  font-size: 1em;
+  letter-spacing: 2px;
+}
+
+.ag-hide.ag-alert-marked-text::before {
   top: -.8em;
 }
 

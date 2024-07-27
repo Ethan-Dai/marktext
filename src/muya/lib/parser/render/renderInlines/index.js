@@ -16,6 +16,7 @@ import loadImageAsync from './loadImageAsync'
 import image from './image'
 import delEmStrongFac from './delEmStringFactory'
 import emoji from './emoji'
+import alert from './alert'
 import inlineCode from './inlineCode'
 import text from './text'
 import del from './del'
@@ -49,6 +50,7 @@ export default {
   image,
   delEmStrongFac,
   emoji,
+  alert,
   inlineCode,
   text,
   del,

@@ -78,6 +78,8 @@ export const CLASS_OR_ID = Object.freeze(genUpper2LowerKeyHash([
   'AG_EDITOR_ID',
   'AG_EMOJI_MARKED_TEXT',
   'AG_EMOJI_MARKER',
+  'AG_ALERT_MARKED_TEXT',
+  'AG_ALERT_MARKER',
   'AG_EMPTY',
   'AG_FENCE_CODE',
   'AG_FLOWCHART',

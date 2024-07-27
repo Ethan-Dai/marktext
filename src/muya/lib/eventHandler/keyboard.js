@@ -256,9 +256,7 @@ class Keyboard {
       if (!anchor || !focus) {
         return
       }
-      if (
-        !this.isComposed
-      ) {
+      if (!this.isComposed) {
         const { anchor: oldAnchor, focus: oldFocus } = contentState.cursor
         if (
           anchor.key !== oldAnchor.key ||

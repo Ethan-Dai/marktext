@@ -62,7 +62,7 @@ const codeBlockCtrl = ContentState => {
       loadLanguage(lang)
     }
 
-    if (block.functionType === 'languageInput') {
+    if (block.functionType && block.functionType === 'languageInput') {
       const preBlock = this.getParent(block)
       const nextSibling = this.getNextSibling(block)
 
